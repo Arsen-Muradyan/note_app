@@ -23,3 +23,15 @@ def create(request):
     return redirect('/notes/')
   messages.error(request, "Title and Markdown's Content is Required")
   return redirect('/notes/add')
+@login_required
+def show(request, id):
+  note = Note.objects.get(pk=id, user=request.user)
+  return render(request, 'notes/show.html', {
+    "note": note
+  })
+@login_required
+def edit(request, id):
+  note = Note.objects.get(pk=id, user=request.user)
+  return render(request, 'notes/edit.html', {
+    "note":note
+  })
