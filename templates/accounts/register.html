@@ -1,0 +1,44 @@
+{% extends 'layouts.html' %} {% block content %}
+<div class="container">
+  <div class="card mt-3 ml-auto mr-auto" style="width: 50rem;">
+    <div class="card-body">
+      <h1 class="text-center card-title">
+        Register <i class="fa fa-user-plus"></i>
+      </h1>
+      {% if messages %}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {% for message in messages %} {{ message }} {% endfor%}
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endif %}
+      <form action="/accounts/signup" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" name="username" />
+        </div>
+        <div class="form-group">
+          <label for="email">E-Mail</label>
+          <input type="email" class="form-control" name="email" />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" name="password" />
+        </div>
+        <div class="form-group">
+          <label for="confirm">Confirm Password</label>
+          <input type="password" class="form-control" name="confirm" />
+        </div>
+        <input type="submit" class="btn btn-danger w-100" value="Register" />
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
