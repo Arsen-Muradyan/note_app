@@ -14,7 +14,7 @@ def index(request):
 @login_required
 def add(request):
   return render(request, 'notes/create.html')
-# Note's Create action view
+# Note's Create action 
 @login_required
 def create(request):
   title   = request.POST.get('title')
