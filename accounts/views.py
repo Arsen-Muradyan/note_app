@@ -2,12 +2,15 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, login as auth_login, logout
 # Create your views here.
 def login(request):
   return render(request, 'accounts/login.html')
 def register(request):
   return render(request, 'accounts/register.html')
+def logout_action(request):
+  logout(request)
+  return redirect("/")
 def register_action(request):
   username = request.POST.get('username')
   password = request.POST.get('password')
@@ -41,5 +44,6 @@ def login_action(request):
       return redirect('/accounts/login')
   else:
     messages.error(request, "All Fields Required")
+    return redirect("/accounts/login")
 def index(request):
   return HttpResponse(request.user.username)

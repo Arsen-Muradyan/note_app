@@ -1,6 +1,5 @@
 {% extends 'layouts.html' %} 
 {% block content %} 
-{% if notes %} 
 {% if messages %}
 <div class="alert alert-success alert-dismissible fade show" role="alert">
   {% for message in messages %} {{ message }} {% endfor%}
@@ -10,6 +9,7 @@
 </div>
 {% endif %}
 <div class="container mt-2">
+{% if notes %} 
   <ul class="list-group">
     {% for note in notes %}
     <li class="list-group-item">
@@ -17,7 +17,8 @@
     </li>
     {% endfor %}
   </ul>
-</div>
 {% else %}
 <span>No Notes Found</span>
-{% endif %} {% endblock %}
+</div>
+{% endif %} 
+{% endblock %}
