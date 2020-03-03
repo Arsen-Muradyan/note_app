@@ -55,7 +55,6 @@ def update(request, id):
   messages.error(request, "Title and Markdown's Content is Required")
   return redirect(f"/notes/edit/{id}")
 # Note's Delete Acition
-
 @login_required
 def delete(request, id):
   note = get_object_or_404(Note, pk=id, user=request.user)
